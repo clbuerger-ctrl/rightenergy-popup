@@ -1,0 +1,68 @@
+/* RightEnergy: Welcome-Text (#service_section / #text-40) auf Smartphones lesbar.
+   Desktop unverändert. Ursache: Theme-H1/H2/H3 (2.72em / …) + Textwidget max-width
+   sprengen die Grid-Spalte und den Viewport (horizontaler Overflow). */
+
+@media screen and (max-width: 767px) {
+  /* Grid-Spalte darf Inhalt nicht nach außen drücken */
+  #service_section .grid,
+  #service_section .container > .grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #service_section .widget_text,
+  #service_section #text-40,
+  #service_section .textwidget {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-wrap: anywhere;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  #service_section .textwidget h1,
+  #service_section #text-40 h1 {
+    font-size: clamp(1.35rem, 5.5vw, 1.75rem) !important;
+    line-height: 1.25 !important;
+    margin: 0.4em 0 0.5em !important;
+    max-width: 100% !important;
+  }
+
+  #service_section .textwidget h2,
+  #service_section #text-40 h2 {
+    font-size: clamp(1.15rem, 4.5vw, 1.4rem) !important;
+    line-height: 1.3 !important;
+    margin: 0.5em 0 0.45em !important;
+    max-width: 100% !important;
+  }
+
+  /* Langer Fließtext steckt fälschlich in h3 – mobil kompakter */
+  #service_section .textwidget h3,
+  #service_section #text-40 h3 {
+    font-size: clamp(0.95rem, 3.8vw, 1.05rem) !important;
+    line-height: 1.45 !important;
+    font-weight: 400 !important;
+    margin: 0.55em 0 !important;
+    max-width: 100% !important;
+  }
+
+  #service_section .textwidget p,
+  #service_section #text-40 p {
+    font-size: clamp(0.95rem, 3.6vw, 1.05rem) !important;
+    line-height: 1.5 !important;
+  }
+
+  #service_section {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+
+  /* Sicherheit gegen horizontalen Scroll durch Rest-Overflow */
+  #service_section,
+  #service_section .container {
+    overflow-x: clip;
+    max-width: 100%;
+  }
+}
