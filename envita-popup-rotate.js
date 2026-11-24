@@ -317,3 +317,19 @@
     else schedule();
   }
 })();
+
+/* RiE 2026-11-24: weiches Trennzeichen im Seitenkopf – "Energiemanagement" trennt mobil als "Energie-" / "management" */
+(function(){
+  if(window.__rieShyDone) return; window.__rieShyDone = true;
+  var RX = /Energiemanagement/g, SHY = 'Energie\u00ADmanagement';
+  function run(){
+    var roots = document.querySelectorAll('header.page-header .page-title, header.page-header #crumbs');
+    for(var r=0;r<roots.length;r++){
+      var w = document.createTreeWalker(roots[r], NodeFilter.SHOW_TEXT, null, false), n;
+      while((n = w.nextNode())){
+        if(n.nodeValue.indexOf('Energiemanagement') > -1) n.nodeValue = n.nodeValue.replace(RX, SHY);
+      }
+    }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();

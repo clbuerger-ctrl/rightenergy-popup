@@ -281,12 +281,12 @@ body #banner_section .banner-caption .btn-wrap a.btn i { font-size: .85em; margi
 @media screen and (max-width: 767px) {
   body header.page-header .page-title,
   body.page-id-13217 header.page-header h1.page-title {
-    font-size: clamp(1.45rem, 7.2vw, 1.9rem) !important;
-    line-height: 1.22 !important;
-    overflow-wrap: anywhere;
+    font-size: clamp(1.75rem, 10vw, 2.25rem) !important; /* 36px ab 360px Breite */
+    line-height: 1.2 !important;
+    overflow-wrap: break-word;
     word-break: normal;
-    hyphens: auto;
-    -webkit-hyphens: auto;
+    hyphens: manual;          /* nur am weichen Trennzeichen (Energie-/management) trennen */
+    -webkit-hyphens: manual;
     max-width: 100%;
   }
   body header.page-header > .container { padding-left: 16px; padding-right: 16px; box-sizing: border-box; }
@@ -298,5 +298,5 @@ body header.page-header #crumbs .separator i { color: #fff !important; }
 body header.page-header #crumbs a:hover { color: #fff !important; text-decoration: underline; }
 body header.page-header #crumbs .current,
 body header.page-header #crumbs .current a { color: rgba(255,255,255,.78) !important; }
-body header.page-header #crumbs { text-shadow: 0 1px 4px rgba(0,0,0,.5); overflow-wrap: anywhere; }
+body header.page-header #crumbs { text-shadow: 0 1px 4px rgba(0,0,0,.5); overflow-wrap: break-word; hyphens: manual; -webkit-hyphens: manual; }
 /* ===== END RiE Seitenkopf-Fix 24.11.2026 ===== */
