@@ -66,3 +66,213 @@
     max-width: 100%;
   }
 }
+
+/* ===== BEGIN RiE Design-Update 24.11.2026 (Mobil-Banner, Menü #233F6C + Terrakotta-Linie, Palette #BA5139, Banner-Buttons) ===== */
+/* RightEnergy: Banner-Text (#banner_section) auf Smartphones ÜBER dem Kopfbild.
+   Ursache: Theme Blossom Spa Pro setzt bei max-width:767px
+   ".site-banner .banner-caption{position:static}" + dunkle Schrift (#333/#666),
+   dadurch rutscht der Text unter das Bild. Desktop (>=768px) bleibt unverändert. */
+
+@media screen and (max-width: 767px) {
+  /* Bühne: Höhe ergibt sich aus dem Text, mindestens ~540px */
+  body #banner_section.site-banner .item {
+    position: relative !important;
+    overflow: hidden;
+    min-height: 540px;
+  }
+
+  /* Kopfbild + Crossfade-Bild der Rotation vollflächig hinter dem Text */
+  body #banner_section #wp-custom-header {
+    position: absolute !important;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0 !important;
+  }
+  body.custom-background #banner_section .item #wp-custom-header img,
+  body #banner_section .item #wp-custom-header img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Text liegt im Fluss (bestimmt die Höhe) über dem Bild, mit dunkelblauem Verlauf */
+  body #banner_section.site-banner .banner-caption {
+    position: relative !important;
+    z-index: 2;
+    min-height: 540px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 44px 0 40px !important;
+    background: linear-gradient(180deg,
+      rgba(20, 40, 80, .70) 0%,
+      rgba(20, 40, 80, .74) 55%,
+      rgba(20, 40, 80, .86) 100%) !important;
+  }
+  body #banner_section .banner-caption .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  body #banner_section .banner-caption .title {
+    color: #fff !important;
+    font-size: clamp(1.6rem, 7.2vw, 2.1rem);
+    line-height: 1.18;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, .45);
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  body #banner_section .banner-caption .description {
+    color: #fff !important;
+    font-size: clamp(.95rem, 4vw, 1.05rem);
+    line-height: 1.55;
+    margin-top: 14px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  }
+  body #banner_section .banner-caption .btn-wrap {
+    margin-top: 22px;
+  }
+  body #banner_section .banner-caption .btn-wrap a.btn {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 1rem !important;
+    letter-spacing: .02em;
+    line-height: 1.35;
+    white-space: normal;
+  }
+  body #banner_section .banner-caption .btn-wrap a.btn i { margin-left: 6px; }
+  body #banner_section .banner-caption .btn-wrap a.btn + a.btn {
+    margin-top: 10px !important;
+  }
+  body #banner_section .banner-caption .btn-wrap a.btn.btn-transparent {
+    border-color: #fff !important;
+    color: #fff !important;
+    background: rgba(255, 255, 255, .08);
+  }
+  body #banner_section .banner-caption .btn-wrap a.btn.btn-transparent:hover {
+    background: #fff !important;
+    color: #233F6C !important;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  body #banner_section.site-banner .item,
+  body #banner_section.site-banner .banner-caption { min-height: 520px; }
+  body #banner_section .banner-caption .description { font-size: .93rem; line-height: 1.5; }
+}
+
+/* Tablet (768–1024px): Text liegt schon über dem Bild, aber Theme-Overlay
+   (rgba(0,0,0,.3)) ist bei hellen Bildern (z. B. Supermarkt) zu schwach. */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  body #banner_section.site-banner .banner-caption {
+    background: linear-gradient(180deg, rgba(20,40,80,.60) 0%, rgba(20,40,80,.72) 100%) !important;
+  }
+  body #banner_section .banner-caption .title { text-shadow: 0 2px 10px rgba(0,0,0,.45); }
+  body #banner_section .banner-caption .description { text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+}
+
+/* ===== Menüfarbe: Markenblau #233F6C statt Theme-Blau #0c3fcc, mit 3px Terrakotta-Unterkante (#BA5139) =====
+   Gilt für Kopfzeile (Kontaktleiste), Sticky-Header, mobile Menüleiste,
+   ausgeklapptes mobiles Menü und Untermenü-Hover. Weiß auf #233F6C = 10,5:1.
+   Alternative dunkler: #0b2a4a (wie .re-band.navy auf /energie-ki/, 14,5:1). */
+#masthead,
+.responsive-nav,
+.sticky-header {
+  --primary-color: #233F6C;
+  --primary-color-rgb: 35, 63, 108;
+}
+.sticky-header { background: #233F6C !important; border-bottom: 3px solid #BA5139 !important; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+.responsive-nav { background: #233F6C !important; }
+#masthead .main-navigation ul ul li:hover > a,
+#masthead .main-navigation ul ul li.current-menu-item > a,
+#masthead .main-navigation ul ul li.current_page_item > a { background: #233F6C !important; color: #fff !important; }
+#masthead .header-t { background: #233F6C !important; }
+.responsive-nav .main-navigation button.toggle-btn,
+#masthead .main-navigation button.toggle-btn { border-color: transparent !important; }
+@media screen and (max-width: 1024px) {
+  #masthead .nav-wrap .container,
+  .header-sticky #masthead .nav-wrap { background: #233F6C !important; }
+  #masthead .nav-wrap .container { border-bottom: 3px solid #BA5139; }
+}
+
+/* ===== Einheitliche Palette =====
+   Navy #0b2a4a  | Markenblau #233F6C (ersetzt Theme-Blau #0c3fcc)
+   Sensor-Terrakotta #BA5139, Hover #9E4430 (Frontfläche Hype-225-Foto; Weiß darauf 4,9:1)
+   Terrakotta hell #E8896B nur als Schrift/Linie auf Navy (5,7:1; #BA5139 hätte dort nur 3,0:1)
+   Rot #C8463A für „AI“ bleibt unverändert. */
+
+/* Theme-Primärfarbe global (Scroll-nach-oben-Button, Sticky, Untermenü-Hover …) */
+:root { --primary-color: #233F6C; --primary-color-rgb: 35, 63, 108; }
+body a { color: #233F6C; }
+section.service-section.style-1, .service-price-section, section.team-section,
+.gallery-section, section.service-section.style-2 { background: rgba(35, 63, 108, .05) !important; }
+.back-to-top { border-color: rgba(35, 63, 108, .5) !important; }
+.back-to-top:hover { background: #233F6C !important; color: #fff !important; }
+
+/* Gefüllte Orange-Flächen -> Terrakotta (Weiß auf #F28C28 hatte nur 2,45:1) */
+body .banner-caption .btn-wrap a.btn-green { background: #BA5139 !important; border-color: #BA5139 !important; }
+body .banner-caption .btn-wrap a.btn-green:hover { background: #9E4430 !important; border-color: #9E4430 !important; }
+body #text-40 a.re-home-btn { background: #BA5139 !important; }
+body #text-40 a.re-home-btn:hover { background: #9E4430 !important; }
+body .re-lp .re-btn:not(.alt) { background: #BA5139 !important; }
+body .re-lp .re-btn:not(.alt):hover { background: #9E4430 !important; }
+/* WPForms „Absenden“ (12021 Lastgang, 13249 Kontakt und überall sonst) */
+body .wpforms-container button.wpforms-submit,
+body .re-lp .re-contact button[type=submit],
+body .re-lg-form-slot .wpforms-submit { background: #BA5139 !important; border-color: #BA5139 !important; color: #fff !important; }
+body .wpforms-container button.wpforms-submit:hover,
+body .re-lp .re-contact button[type=submit]:hover,
+body .re-lg-form-slot .wpforms-submit:hover { background: #9E4430 !important; border-color: #9E4430 !important; }
+
+/* /energie-ki/: Fläche „Bestellen oder Angebot anfordern“ */
+body .re-lp .re-band.accent { background: #BA5139 !important; color: #fff; }
+body .re-lp .re-band.accent .re-cta p { color: #fff !important; }
+body .re-lp .re-band.accent .re-btn:not(.alt) { background: #0b2a4a !important; box-shadow: 0 0 0 2px rgba(255,255,255,.35); }
+body .re-lp .re-band.accent .re-btn:not(.alt):hover { background: #071d34 !important; }
+body .re-lp .re-band.accent .re-btn.alt:hover { background: rgba(255,255,255,.14) !important; }
+
+/* Orange als Schrift/Linie auf hellem Grund -> Terrakotta (vorher 2,45:1, jetzt 4,9:1) */
+body #text-40 .re-home-flow, body #text-40 .re-home-ai, body #text-40 .re-home-price { border-left-color: #BA5139 !important; border-color: #ead9c8; }
+body #text-40 a.re-home-more, body #text-40 .re-home-ai-kicker, body #text-40 .re-home-ai-headline { color: #BA5139 !important; }
+body #text-40 a.re-home-more:hover { color: #9E4430 !important; }
+body .re-lp .re-card { border-left-color: #BA5139; }
+body .re-lp .re-step, body .re-lp .re-eur { color: #BA5139; }
+body .re-lg-more { border-bottom-color: #BA5139 !important; }
+body .re-lg-more:hover { color: #BA5139 !important; }
+
+/* Orange auf Navy -> helles Terrakotta (Lesbarkeit bleibt ~5,7:1) */
+body .re-lp .re-band.navy .re-card, body .re-lp .re-band.deep .re-card { border-left-color: #E8896B !important; }
+body .re-lp .re-band.navy .re-step, body .re-lp .re-band.deep .re-step,
+body .re-lp .re-band.navy .re-eur, body .re-lp .re-band.deep .re-eur,
+body .re-lp .re-kpi b { color: #E8896B !important; }
+body .re-lp .re-contact .wpforms-required-label { color: #E8896B !important; }
+body .re-lp [style*="color:#f28c28"] { color: #E8896B !important; }
+body .re-lp [style*="solid #f28c28"] { border-left-color: #E8896B !important; }
+
+/* ===== Banner-Buttons Startseite: größere Schrift (vorher .6666em ≈ 12px) ===== */
+body #banner_section .banner-caption .btn-wrap a.btn {
+  font-size: 17px;
+  letter-spacing: .03em;
+  padding: 16px 34px;
+  line-height: 1.3;
+}
+body #banner_section .banner-caption .btn-wrap a.btn i { font-size: .85em; margin-left: 8px; }
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  body #banner_section .banner-caption .btn-wrap a.btn { font-size: 16px; padding: 14px 28px; }
+}
+@media screen and (max-width: 767px) {
+  body #banner_section .banner-caption .btn-wrap a.btn { font-size: 16px !important; padding: 14px 14px; letter-spacing: 0; }
+}
+/* ===== END RiE Design-Update 24.11.2026 ===== */
