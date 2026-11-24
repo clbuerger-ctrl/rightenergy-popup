@@ -300,3 +300,36 @@ body header.page-header #crumbs .current,
 body header.page-header #crumbs .current a { color: rgba(255,255,255,.78) !important; }
 body header.page-header #crumbs { text-shadow: 0 1px 4px rgba(0,0,0,.5); overflow-wrap: break-word; hyphens: manual; -webkit-hyphens: manual; }
 /* ===== END RiE Seitenkopf-Fix 24.11.2026 ===== */
+
+/* ===== BEGIN RiE Banner-Mobil-Fix 3 24.11.2026 (Titel ganze Wörter, Untertext immer sichtbar, Schleier heller) =====
+   Ursache: Das Rotationsskript (WPCode-Footer) vergrößert im „Großer-Titel“-Modus die Überschrift per Inline-Style
+   bis Bühnenhöhe (57–65px) und blendet den Untertext aus; mit hyphens:auto wurde dabei mitten im Wort getrennt.
+   Nur #banner_section – der Seitenkopf (header.page-header, Energie-/management) ist nicht betroffen. */
+@media screen and (max-width: 767px) {
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body #banner_section .banner-caption .banner-caption-inner { max-width: none !important; }
+  body #banner_section .banner-caption .title {
+    font-size: clamp(1.6rem, 7.4vw, 1.9rem) !important;   /* ≈ 27px bei 360, 29px bei 390, 30px bei 412 */
+    line-height: 1.2 !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,.75), 0 1px 3px rgba(0,0,0,.6) !important;
+  }
+  body #banner_section .banner-caption .description {
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    text-shadow: 0 1px 3px rgba(0,0,0,.85), 0 0 10px rgba(0,0,0,.55) !important;
+  }
+  body #banner_section.site-banner .banner-caption {
+    background: linear-gradient(180deg,
+      rgba(20, 40, 80, .35) 0%,
+      rgba(20, 40, 80, .45) 45%,
+      rgba(20, 40, 80, .65) 100%) !important;
+  }
+}
+/* ===== END RiE Banner-Mobil-Fix 3 24.11.2026 ===== */
