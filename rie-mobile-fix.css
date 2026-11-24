@@ -276,3 +276,27 @@ body #banner_section .banner-caption .btn-wrap a.btn i { font-size: .85em; margi
   body #banner_section .banner-caption .btn-wrap a.btn { font-size: 16px !important; padding: 14px 14px; letter-spacing: 0; }
 }
 /* ===== END RiE Design-Update 24.11.2026 ===== */
+
+/* ===== BEGIN RiE Seitenkopf-Fix 24.11.2026 (Seitentitel mobil, Brotkrümel hell) ===== */
+@media screen and (max-width: 767px) {
+  body header.page-header .page-title,
+  body.page-id-13217 header.page-header h1.page-title {
+    font-size: clamp(1.45rem, 7.2vw, 1.9rem) !important;
+    line-height: 1.22 !important;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    max-width: 100%;
+  }
+  body header.page-header > .container { padding-left: 16px; padding-right: 16px; box-sizing: border-box; }
+}
+body header.page-header #crumbs,
+body header.page-header #crumbs a,
+body header.page-header #crumbs .separator,
+body header.page-header #crumbs .separator i { color: #fff !important; }
+body header.page-header #crumbs a:hover { color: #fff !important; text-decoration: underline; }
+body header.page-header #crumbs .current,
+body header.page-header #crumbs .current a { color: rgba(255,255,255,.78) !important; }
+body header.page-header #crumbs { text-shadow: 0 1px 4px rgba(0,0,0,.5); overflow-wrap: anywhere; }
+/* ===== END RiE Seitenkopf-Fix 24.11.2026 ===== */
