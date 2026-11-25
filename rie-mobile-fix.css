@@ -277,19 +277,56 @@ body #banner_section .banner-caption .btn-wrap a.btn i { font-size: .85em; margi
 }
 /* ===== END RiE Design-Update 24.11.2026 ===== */
 
-/* ===== BEGIN RiE Seitenkopf-Fix 24.11.2026 (Seitentitel mobil, Brotkrümel hell) ===== */
+/* ===== BEGIN RiE Seitenkopf-Fix 24./25.11.2026 (Seitentitel mobil, Brotkrümel hell, Beitragstitel + Badges) ===== */
 @media screen and (max-width: 767px) {
-  body header.page-header .page-title,
-  body.page-id-13217 header.page-header h1.page-title {
-    font-size: clamp(1.75rem, 10vw, 2.25rem) !important; /* 36px ab 360px Breite */
+  /* Beitrags- und Seitentitel im Hero: kleiner, kein Abschneiden.
+     Ursache: Theme setzt .container auf 420px (breiter als 360/390px) und der
+     bisherige Titel (36px, hyphens:manual ohne weiches Trennzeichen) brach
+     „Energiedatenmanagement“ mitten im Wort und ragte über den Rand. */
+  body header.page-header .page-title {
+    font-size: clamp(1.5rem, 7vw, 1.9rem) !important; /* ≈ 25px bei 360, 27px bei 390, 29px bei 412 */
     line-height: 1.2 !important;
     overflow-wrap: break-word;
     word-break: normal;
-    hyphens: manual;          /* nur am weichen Trennzeichen (Energie-/management) trennen */
+    hyphens: manual;          /* Trennung nur am weichen Trennzeichen (Energiedaten-/management) */
     -webkit-hyphens: manual;
     max-width: 100%;
+    box-sizing: border-box;
   }
-  body header.page-header > .container { padding-left: 16px; padding-right: 16px; box-sizing: border-box; }
+  /* /energie-ki/ (page-id-13217): bleibt bei 36px, Trennung Energie-/management */
+  body.page-id-13217 header.page-header h1.page-title {
+    font-size: clamp(1.75rem, 10vw, 2.25rem) !important; /* 36px ab 360px Breite */
+    hyphens: manual;
+    -webkit-hyphens: manual;
+  }
+  body header.page-header > .container,
+  body.single header.page-header > .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+  }
+  body header.page-header .breadcrumb-wrapper > .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 0;
+    padding-right: 0;
+    box-sizing: border-box;
+  }
+  /* Kategorie-Badges: umbrechen und im Viewport zentrieren, nichts abschneiden */
+  body header.page-header span.category {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4px 2px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  body header.page-header span.category a {
+    margin-right: 0;
+  }
 }
 body header.page-header #crumbs,
 body header.page-header #crumbs a,
