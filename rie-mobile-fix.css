@@ -377,3 +377,26 @@ body header.page-header #crumbs { text-shadow: 0 1px 4px rgba(0,0,0,.5); overflo
   }
 }
 /* ===== END RiE Banner-Mobil-Fix 3 24.11.2026 ===== */
+
+/* ===== BEGIN RiE Seitenkopf /energie-ki/ Mobil-Overlay 25.11.2026 =====
+   Das Kopfbild (header::before, Band 3973px auto, repeat-x) ist auf dem Handy
+   niedriger als der Hero, daher dunkelblaue Streifen oben/unten. Der Schleier
+   (::after) ist mit 62–68 % zu dunkel, das Motiv kaum erkennbar. */
+@media screen and (max-width: 767px) {
+  body.page-id-13217 header.page-header::before {
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: left center !important; /* Motiv (Hand/Sensor) bleibt im Ausschnitt */
+    animation: none !important; /* Pan würde bei cover den Rand freigeben */
+  }
+  body.page-id-13217 header.page-header::after {
+    background: linear-gradient(180deg,
+      rgba(11, 42, 74, .35) 0%,
+      rgba(11, 42, 74, .45) 45%,
+      rgba(11, 42, 74, .60) 100%) !important;
+  }
+  body.page-id-13217 header.page-header h1.page-title {
+    text-shadow: 0 2px 12px rgba(0,0,0,.75), 0 1px 3px rgba(0,0,0,.6);
+  }
+}
+/* ===== END RiE Seitenkopf /energie-ki/ Mobil-Overlay 25.11.2026 ===== */
