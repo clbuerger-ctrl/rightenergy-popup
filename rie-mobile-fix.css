@@ -286,18 +286,21 @@ body #banner_section .banner-caption .btn-wrap a.btn i { font-size: .85em; margi
   body header.page-header .page-title {
     font-size: clamp(1.5rem, 7vw, 1.9rem) !important; /* ≈ 25px bei 360, 27px bei 390, 29px bei 412 */
     line-height: 1.2 !important;
-    overflow-wrap: break-word;
-    word-break: normal;
-    hyphens: manual;          /* Trennung nur am weichen Trennzeichen (Energiedaten-/management) */
-    -webkit-hyphens: manual;
+    /* Safari bricht bei overflow-wrap:break-word mitten im Wort und ignoriert &shy; */
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: manual !important;   /* nur am weichen Trennzeichen (Energie-/management) */
+    -webkit-hyphens: manual !important;
     max-width: 100%;
     box-sizing: border-box;
   }
   /* /energie-ki/ (page-id-13217): bleibt bei 36px, Trennung Energie-/management */
   body.page-id-13217 header.page-header h1.page-title {
     font-size: clamp(1.75rem, 10vw, 2.25rem) !important; /* 36px ab 360px Breite */
-    hyphens: manual;
-    -webkit-hyphens: manual;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: manual !important;
+    -webkit-hyphens: manual !important;
   }
   body header.page-header > .container {
     padding-left: 16px;
@@ -339,7 +342,7 @@ body header.page-header #crumbs .separator i { color: #fff !important; }
 body header.page-header #crumbs a:hover { color: #fff !important; text-decoration: underline; }
 body header.page-header #crumbs .current,
 body header.page-header #crumbs .current a { color: rgba(255,255,255,.78) !important; }
-body header.page-header #crumbs { text-shadow: 0 1px 4px rgba(0,0,0,.5); overflow-wrap: break-word; hyphens: manual; -webkit-hyphens: manual; }
+body header.page-header #crumbs { text-shadow: 0 1px 4px rgba(0,0,0,.5); overflow-wrap: normal; word-break: normal; hyphens: manual; -webkit-hyphens: manual; }
 /* ===== END RiE Seitenkopf-Fix 24.11.2026 ===== */
 
 /* ===== BEGIN RiE Banner-Mobil-Fix 3 24.11.2026 (Titel ganze Wörter, Untertext immer sichtbar, Schleier heller) =====
