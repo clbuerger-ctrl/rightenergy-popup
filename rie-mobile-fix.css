@@ -383,11 +383,23 @@ body header.page-header #crumbs { text-shadow: 0 1px 4px rgba(0,0,0,.5); overflo
    niedriger als der Hero, daher dunkelblaue Streifen oben/unten. Der Schleier
    (::after) ist mit 62–68 % zu dunkel, das Motiv kaum erkennbar. */
 @media screen and (max-width: 767px) {
+  /* Bildwechsel: kein klassischer Slider, sondern die Site-Animation
+     re-header-band (80s, linear, infinite) über das 3973×250-Panorama.
+     cover + animation:none hatte die Bewegung auf dem Handy gestoppt.
+     Jetzt: Höhe füllend (auto 100 %), nahtloses repeat-x, 80s-Pan über zwei Kacheln. */
+  body.page-id-13217 header.page-header {
+    overflow: hidden;
+  }
   body.page-id-13217 header.page-header::before {
-    background-size: cover !important;
-    background-repeat: no-repeat !important;
-    background-position: left center !important; /* Motiv (Hand/Sensor) bleibt im Ausschnitt */
-    animation: none !important; /* Pan würde bei cover den Rand freigeben */
+    top: 0 !important;
+    left: 0 !important;
+    height: 100% !important;
+    width: auto !important;
+    aspect-ratio: calc(2 * 3973 / 250);
+    background-size: auto 100% !important;
+    background-repeat: repeat-x !important;
+    background-position: 0 50% !important;
+    animation: rie-eki-header-pan 80s linear infinite !important;
   }
   body.page-id-13217 header.page-header::after {
     background: linear-gradient(180deg,
@@ -398,5 +410,14 @@ body header.page-header #crumbs { text-shadow: 0 1px 4px rgba(0,0,0,.5); overflo
   body.page-id-13217 header.page-header h1.page-title {
     text-shadow: 0 2px 12px rgba(0,0,0,.75), 0 1px 3px rgba(0,0,0,.6);
   }
+}
+@media screen and (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  body.page-id-13217 header.page-header::before {
+    animation: none !important;
+  }
+}
+@keyframes rie-eki-header-pan {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 /* ===== END RiE Seitenkopf /energie-ki/ Mobil-Overlay 25.11.2026 ===== */
