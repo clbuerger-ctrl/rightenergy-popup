@@ -299,15 +299,19 @@ body #banner_section .banner-caption .btn-wrap a.btn i { font-size: .85em; margi
     hyphens: manual;
     -webkit-hyphens: manual;
   }
-  body header.page-header > .container,
-  body.single header.page-header > .container {
-    max-width: 100% !important;
-    width: 100% !important;
+  body header.page-header > .container {
     padding-left: 16px;
     padding-right: 16px;
     box-sizing: border-box;
   }
-  body header.page-header .breadcrumb-wrapper > .container {
+  /* Theme setzt .container auf 420px (breiter als 360/390px) und schneidet ab.
+     /energie-ki/ (page-id-13217) behält die 420px, damit der 36px-Titel weiter
+     als „Innovatives / Energiemanagement der / neuesten Generation“ umbricht. */
+  body:not(.page-id-13217) header.page-header > .container {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+  body:not(.page-id-13217) header.page-header .breadcrumb-wrapper > .container {
     max-width: 100% !important;
     width: 100% !important;
     padding-left: 0;
