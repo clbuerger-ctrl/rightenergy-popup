@@ -294,9 +294,10 @@ body #banner_section .banner-caption .btn-wrap a.btn i { font-size: .85em; margi
     max-width: 100%;
     box-sizing: border-box;
   }
-  /* /energie-ki/ (page-id-13217): bleibt bei 36px, Trennung Energie-/management */
+  /* /energie-ki/ (page-id-13217): dieselbe Schriftgröße wie die anderen Hero-Titel
+     (ca. 25–29px). font-weight:700 kommt aus dem Seiten-CSS und bleibt. */
   body.page-id-13217 header.page-header h1.page-title {
-    font-size: clamp(1.75rem, 10vw, 2.25rem) !important; /* 36px ab 360px Breite */
+    font-size: clamp(1.5rem, 7vw, 1.9rem) !important;
     overflow-wrap: normal !important;
     word-break: normal !important;
     hyphens: manual !important;
@@ -308,8 +309,7 @@ body #banner_section .banner-caption .btn-wrap a.btn i { font-size: .85em; margi
     box-sizing: border-box;
   }
   /* Theme setzt .container auf 420px (breiter als 360/390px) und schneidet ab.
-     /energie-ki/ (page-id-13217) behält die 420px, damit der 36px-Titel weiter
-     als „Innovatives / Energiemanagement der / neuesten Generation“ umbricht. */
+     /energie-ki/ (page-id-13217) behält die bisherige Container-Breite. */
   body:not(.page-id-13217) header.page-header > .container {
     max-width: 100% !important;
     width: 100% !important;
